@@ -17,7 +17,7 @@ class Pgm {
         int height;
         int pixelValueMax;
         vector<GrayPixel> pixels;
-    
+
     public:
         // constructors
         Pgm() = default;

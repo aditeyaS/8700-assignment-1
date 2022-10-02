@@ -28,7 +28,7 @@ void Rotator::rotate(string inputFile, string rotationMode, string angle, string
         cout << "90*n (n=0,1,2,..) are valid angles" << endl;
         return;
     }
-    
+
     // verifying input direction
     char direction;
     if (rotationMode.length() != 2) {
@@ -43,7 +43,6 @@ void Rotator::rotate(string inputFile, string rotationMode, string angle, string
             return;
         }
     }
-
 
     // getting the magic number
     ifstream infile(inputFile, ifstream::binary);

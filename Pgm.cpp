@@ -78,7 +78,7 @@ void Pgm::rotate (char direction, int angle, string newFileName) {
         std::cout << "Writing " << newFileName << " failed!" << std::endl;
         return;
     }
-    
+
     int outputWidth = width, outputHeight = height;
     vector<GrayPixel> rotatedPixels;
     if (angle == 0) {
@@ -115,7 +115,7 @@ void Pgm::rotate (char direction, int angle, string newFileName) {
     output << magicNumber << "\n# created by Aditeya (aditeys) assignment 1\n"
             << outputWidth << " " << outputHeight << endl
             << pixelValueMax << endl;
-    
+
     // write data
     for (int i = 0; i < rotatedPixels.size(); i++) {
         if (magicNumber == "P2") {

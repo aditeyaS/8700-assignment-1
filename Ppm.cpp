@@ -82,7 +82,7 @@ void Ppm::rotate (char direction, int angle, string newFileName) {
         std::cout << "Writing " << newFileName << " failed!" << std::endl;
         return;
     }
-    
+
     int outputWidth = width, outputHeight = height;
     vector<ColorPixel> rotatedPixels;
     if (angle == 0) {
