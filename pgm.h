@@ -1,4 +1,6 @@
-//Aditeya Srivastava (aditeys@clemson.edu)
+// Aditeya Srivastava (aditeys@clemson.edu)
+// https://github.com/aditeyaS/8700-assignment-1
+
 #ifndef PGM_H
 #define PGM_H
 
@@ -22,7 +24,7 @@ class Pgm {
         Pgm(const string &file);
 
         // destructors
-        // ~Pgm();
+        ~Pgm();
 
         // methods
         void read(const string &file);

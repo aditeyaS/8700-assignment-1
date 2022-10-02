@@ -1,4 +1,6 @@
-//Aditeya Srivastava (aditeys@clemson.edu)
+// Aditeya Srivastava (aditeys@clemson.edu)
+// https://github.com/aditeyaS/8700-assignment-1
+
 #include "pgm.h"
 #include "grayPixel.h"
 
@@ -9,6 +11,10 @@ using namespace std;
 
 Pgm::Pgm (const string &file) {
     read(file);
+}
+
+Pgm::~Pgm() {
+    pixels.clear();
 }
 
 void Pgm::read (const string &file) {

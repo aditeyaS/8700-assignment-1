@@ -1,4 +1,6 @@
-//Aditeya Srivastava (aditeys@clemson.edu)
+// Aditeya Srivastava (aditeys@clemson.edu)
+// https://github.com/aditeyaS/8700-assignment-1
+
 #ifndef PPM_H
 #define PPM_H
 
@@ -22,7 +24,7 @@ class Ppm {
         Ppm(const string &file);
 
         // destructors
-        // ~Ppm();
+        ~Ppm();
 
         // methods
         void read(const string &file);

@@ -1,4 +1,6 @@
 // Aditeya Srivastava (aditeys@clemson.edu)
+// https://github.com/aditeyaS/8700-assignment-1
+
 #include "ppm.h"
 #include "colorPixel.h"
 
@@ -9,6 +11,10 @@ using namespace std;
 
 Ppm::Ppm (const string &file) {
     read(file);
+}
+
+Ppm::~Ppm() {
+    pixels.clear();
 }
 
 void Ppm::read (const string &file) {

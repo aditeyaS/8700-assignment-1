@@ -1,52 +1,72 @@
-//Aditeya Srivastava (aditeys@clemson.edu)
+// Aditeya Srivastava (aditeys@clemson.edu)
+// https://github.com/aditeyaS/8700-assignment-1
+
 #include "ppm.h"
 #include "pgm.h"
+#include "rotator.h"
 
 #include <string>
 #include <iostream>
 #include <fstream>
 using namespace std;
 
-int main() {
-    // string file = "chips-1.ppm";
-    string file = "cats_chips.ppm";
-    ifstream infile(file, ifstream::binary);
+Rotator* Rotator::instance = NULL;
+
+void Rotator::rotate(string inputFile, string rotationMode, string angle, string outputFile) {
+    // verifying input angle
+    for (int i=0; i < angle.length(); i++) {
+        if(!isdigit(angle[i])) {
+            cout << "Invalid angle: " << angle << endl;
+            cout << "90*n (n=0,1,2,..) are valid angles" << endl;
+            return;
+        }
+    }
+
+    int modAngle = stoi(angle) % 360;
+    cout << "Angle: " << modAngle << endl;
+    if (!(modAngle == 0 || modAngle == 90 || modAngle == 180 || modAngle == 270)) {
+        cout << "Invalid angle: " << angle << endl;
+        cout << "90*n (n=0,1,2,..) are valid angles" << endl;
+        return;
+    }
+    
+    // verifying input direction
+    char direction;
+    if (rotationMode.length() != 2) {
+            cout << "Invalid rotation mode: " << rotationMode << endl;
+            cout << "-r OR -l are valid modes" << endl;
+            return;
+    } else {
+        direction = rotationMode.at(1);
+        if (!(direction == 'r' || direction == 'l')) {
+            cout << "Invalid rotation mode: " << rotationMode << endl;
+            cout << "-r OR -l are valid modes" << endl;
+            return;
+        }
+    }
+
+
+    // getting the magic number
+    ifstream infile(inputFile, ifstream::binary);
     string magicNumber;
     if (!infile.is_open()) {
-        cout << "Opening " << file << " failed!" << endl;
-        return 0;
+        cout << "Opening " << inputFile << " failed!" << endl;
+        return;
     }
     infile >> magicNumber;
+    infile.close();
+
     if (magicNumber == "P2" || magicNumber == "P5") {
-        //pgm files
-        Pgm* pgm = new Pgm(file);
-        pgm->rotate('r', 0, "test_r0.pgm");
-        pgm->rotate('l', 0, "test_l0.pgm");
-        pgm->rotate('r', 90, "test_r90.pgm");
-        pgm->rotate('l', 90, "test_l90.pgm");
-        pgm->rotate('r', 180, "test_r180.pgm");
-        pgm->rotate('l', 180, "test_l180.pgm");
-        pgm->rotate('r', 270, "test_r270.pgm");
-        pgm->rotate('l', 270, "test_l270.pgm");
+        // pgm files
+        Pgm* pgm = new Pgm(inputFile);
+        pgm->rotate(direction, modAngle, outputFile);
     } else if (magicNumber == "P3" || magicNumber == "P6") {
-        //ppm ascii
-        cout << "P3" << endl;
-
-        Ppm* ppm = new Ppm(file);
-        ppm->rotate('r', 0, "test_r0.ppm");
-        ppm->rotate('l', 0, "test_l0.ppm");
-        ppm->rotate('r', 90, "test_r90.ppm");
-        ppm->rotate('l', 90, "test_l90.ppm");
-        ppm->rotate('r', 180, "test_r180.ppm");
-        ppm->rotate('l', 180, "test_l180.ppm");
-        ppm->rotate('r', 270, "test_r270.ppm");
-        ppm->rotate('l', 270, "test_l270.ppm");
-    } else if (magicNumber == "P10") {
-        //ppm binary
-        cout << "P6" << endl;
-
+        // ppm files
+        Ppm* ppm = new Ppm(inputFile);
+        ppm->rotate(direction, modAngle, outputFile);
     } else {
-        cout << "UnknownFileFormat: " << file << endl;
+        // other files
+        cout << "Unsupported file with magic number: " << magicNumber << endl;
+        cout << "Only pgm and ppm files (P2,P3,P5,P6) are supported." << endl;
     }
-    return 0;
 }
