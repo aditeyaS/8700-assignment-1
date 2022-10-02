@@ -23,7 +23,6 @@ void Rotator::rotate(string inputFile, string rotationMode, string angle, string
     }
 
     int modAngle = stoi(angle) % 360;
-    cout << "Angle: " << modAngle << endl;
     if (!(modAngle == 0 || modAngle == 90 || modAngle == 180 || modAngle == 270)) {
         cout << "Invalid angle: " << angle << endl;
         cout << "90*n (n=0,1,2,..) are valid angles" << endl;
