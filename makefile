@@ -8,4 +8,4 @@ clean:
 	rm rotator *.pdf *.pgm *.ppm *.tar.gz
 
 tarball:
-	tar -czvf discovery1.tar.gz *.cpp *.h makefile
+	tar -czvf assignment1.tar.gz *.cpp *.h makefile

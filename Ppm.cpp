@@ -92,8 +92,8 @@ void Ppm::rotate (char direction, int angle, string newFileName) {
         // 90 deg clockwise OR 270 deg counter-clockwise
         outputWidth = height;
         outputHeight = width;
-        for (int i = (height - 1) * width; i!=width*height-1; i++) {
-            for (int j = i; j>0; j = j- width) {
+        for (int i = (height - 1) * width; i < width * height; i++) {
+            for (int j = i; j >= 0; j = j- width) {
                 rotatedPixels.push_back(pixels[j]);
             }
         }
