@@ -10,7 +10,7 @@
 #include <fstream>
 using namespace std;
 
-Rotator* Rotator::instance = NULL;
+Rotator* Rotator::instance;
 
 void Rotator::rotate(string inputFile, string rotationMode, string angle, string outputFile) {
     // verifying input angle

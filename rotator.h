@@ -13,6 +13,9 @@ class Rotator {
         Rotator(){}
 
     public:
+        // delete copy constructor
+        Rotator(const Rotator&) = delete;
+
         static Rotator* getInstance() {
             if (!instance) instance = new Rotator;
             return instance;
